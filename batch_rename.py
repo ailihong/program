@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 '''
 批量重命名，会删除原来的文件！！！，使用前注意备份
@@ -23,9 +22,10 @@ if __name__ == '__main__':
         print('input,output directory or data is not given,please add --help')
     else:
         list_name=os.listdir(args.input)
+        total=len(list_name)
         n=0
         for name in list_name:
             n+=1
             new_name = 'bai' + args.date + '%d.'%n + args.end
             os.rename(args.input + name,args.output +new_name)
-            print('doing,%d\n'%n)
+            print('doing,%d/%d\n'%(n,total))
