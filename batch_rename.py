@@ -24,12 +24,14 @@ if __name__ == '__main__':
         list_name=os.listdir(args.dir)
 
         total=len(list_name)
+        len_total=len('%d'%total)
         n=0
         for name in list_name:
             n+=1
-            new_name = args.name + args.date + '_%d.'%n + args.end
+            new_name = args.name + args.date + '_%0*d.'%(len_total,n) + args.end#自动补零
             dir_temp = args.dir
             if args.dir[-1]!='/':
                 dir_temp=args.dir+'/'
             os.rename(dir_temp + name,dir_temp +new_name)
             print('doing,%d/%d\n'%(n,total))
+
