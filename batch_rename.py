@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-批量重命名，会删除原来的文件！！！，使用前注意备份
+批量重命名，会删除原来的文件！！！，使用前注意备份,命名会自动补零
 '''
 import os
 import argparse
@@ -28,7 +28,7 @@ if __name__ == '__main__':
         n=0
         for name in list_name:
             n+=1
-            new_name = args.name + args.date + '_%0*d.'%(len_total,n) + args.end#自动补零
+            new_name = args.name + args.date + '_%0*d.'%(len_total,n) + args.end
             dir_temp = args.dir
             if args.dir[-1]!='/':
                 dir_temp=args.dir+'/'
