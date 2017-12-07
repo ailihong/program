@@ -8,8 +8,8 @@ import argparse
 def parse_args():
     """Parse input arguments."""
     parser = argparse.ArgumentParser(description='batch rename')
-    parser.add_argument('--input', dest='input', help='input directory',default='None')
-    parser.add_argument('--output', dest='output', help='output directory',default='None')
+    parser.add_argument('--dir', dest='dir', help='file directory',default='None')
+    parser.add_argument('--name', dest='name', help='name',default='bai')
     parser.add_argument('--date', dest='date', help='date',default='None')
     parser.add_argument('--end', dest='end', help='file type',default='None')
     args = parser.parse_args()
@@ -18,14 +18,18 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
-    if args.input=='None' or args.output=='None' or args.date=='None' or args.end=='None':
+    if args.dir=='None' or args.date=='None' or args.end=='None':
         print('input,output directory or data is not given,please add --help')
     else:
-        list_name=os.listdir(args.input)
+        list_name=os.listdir(args.dir)
+
         total=len(list_name)
         n=0
         for name in list_name:
             n+=1
-            new_name = 'bai' + args.date + '%d.'%n + args.end
-            os.rename(args.input + name,args.output +new_name)
+            new_name = args.name + args.date + '_%d.'%n + args.end
+            dir_temp = args.dir
+            if args.dir[-1]!='/':
+                dir_temp=args.dir+'/'
+            os.rename(dir_temp + name,dir_temp +new_name)
             print('doing,%d/%d\n'%(n,total))
