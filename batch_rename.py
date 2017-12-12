@@ -22,7 +22,7 @@ if __name__ == '__main__':
     if args.dir=='None' or args.date=='None' or args.end=='None':
         print('input,output directory or data is not given,please add --help')
     else:
-        list_name=os.listdir(args.dir)
+        list_name=os.listdir(args.dir)#不是绝对路径，只是文件名file.file
 
         total=len(list_name)
         len_total=len('%d'%total)
