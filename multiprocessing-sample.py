@@ -3,10 +3,11 @@
 """
 测试多进程
 说明：python的多线程是假的多线程，实际上效果和单线程没什么区别，有别于C++的多线程。python的多进程才有异步、并真正利用多核CPU
-由于main也是一个进程，进程和进程之间，不能共享资源，比如main程序中有一个全局变量，在main中创建了新的进程，其他进程更改不了main中的全局变量。
-如果需要进程间传递数据，那就需要进程间通信了
+由于main也是一个进程，进程和进程之间，不能共享资源，比如main程序中有一个全局变量，在main中创建了新的进程，其他进程更改不了main中的全局变量（
+有教程说多个进程都获得了资源的一份副本，互相之间不干扰）。如果需要进程间传递数据，那就需要进程间通信了
 多进程：有尝试过通过multiprocessing.Pool.apply_async、multiprocessing.Pool.map_async来创建进程，但是不知道为什么，要么不是异步的效果，要么
 得不到返回值。
+多进程通信简单教程：https://www.cnblogs.com/PrettyTom/p/6583153.html
 """
 
 import multiprocessing
@@ -77,7 +78,7 @@ while(1):
     #face
     #yolo
 
-    result1 = q_mess.get()
+    result1 = q_mess.get()#获取队列中的一条消息，然后将其从列队中移除，可传参超时时长
     result2 = q_mess.get()
     print result1
     print result2
