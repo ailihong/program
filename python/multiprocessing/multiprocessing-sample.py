@@ -7,7 +7,9 @@
 有教程说多个进程都获得了资源的一份副本，互相之间不干扰）。如果需要进程间传递数据，那就需要进程间通信了
 多进程：有尝试过通过multiprocessing.Pool.apply_async、multiprocessing.Pool.map_async来创建进程，但是不知道为什么，要么不是异步的效果，要么
 得不到返回值。
-多进程通信简单教程：https://www.cnblogs.com/PrettyTom/p/6583153.html
+多进程通信简单教程：
+https://www.cnblogs.com/PrettyTom/p/6583153.html
+Python-multiprocessing进程管理
 """
 
 import multiprocessing
