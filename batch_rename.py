@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#coding：utf8
+#coding:utf8
 '''
 批量重命名，会删除原来的文件！！！，使用前注意备份,命名会自动补零
 '''
