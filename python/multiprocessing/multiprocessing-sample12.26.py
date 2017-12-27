@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Nov 20 15:26:35 2017
-
-@author: master
+pycaffe multiprocessin 错误：子进程只能在该进程中进行相关资源的使用，初始化
+Caffe fails to use GPU in a new thread #4178 https://github.com/BVLC/caffe/issues/4178
 """
 import numpy as np
 import facep
