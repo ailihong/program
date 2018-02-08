@@ -126,12 +126,12 @@ void * _run(void *id)
    * any launch line works as long as it contains elements named pay%d. Each
    * element with pay%d names will be a stream */
   factory = gst_rtsp_media_factory_new ();
-  gst_rtsp_media_factory_set_launch (factory,
-      "( appsrc name=mysrc ! videoconvert ! x264enc ! rtph264pay name=pay0 pt=96 )");//格式转换没有报错，mpph264enc还没测试
-
   /*gst_rtsp_media_factory_set_launch (factory,
-      "( appsrc name=mysrc ! videoconvert ! capsfilter caps=video/x-raw,format=NV12 ! queue! x264enc ! rtph264pay name=pay0 pt=96 )");//格式转换没有报错，mpph264enc还没测试
+      "( appsrc name=mysrc ! videoconvert ! x264enc ! rtph264pay name=pay0 pt=96 )");//格式转换没有报错，mpph264enc还没测试
 */
+  gst_rtsp_media_factory_set_launch (factory,
+      "( appsrc name=mysrc ! videoconvert ! capsfilter caps=video/x-raw,format=NV12 ! queue! mpph264enc ! rtph264pay name=pay0 pt=96 )");
+
   /* notify when our media is ready, This is called whenever someone asks for
    * the media and a new pipeline with our appsrc is created */
   g_signal_connect (factory, "media-configure", (GCallback) media_configure,
