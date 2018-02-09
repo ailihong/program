@@ -50,9 +50,9 @@ need_data (GstElement * appsrc, guint unused, MyContext * ctx)
   
   /*现在想办法把自己的图像给进去*/
   pthread_mutex_lock (&Image2_mutex);
-  gst_buffer_fill (buffer,0, &_image2[0],size);
+  //gst_buffer_fill (buffer,0, &_image2[0],size);
   //ctx->white = !ctx->white;
-  //gst_buffer_memset (buffer, 0, ctx->level, size);
+  gst_buffer_memset (buffer, 0, ctx->level, size);
   pthread_mutex_unlock (&Image2_mutex);
   ctx->level += 4;
   /* increment the timestamp every 1/2 second */
@@ -127,11 +127,14 @@ void * _run(void *id)
    * element with pay%d names will be a stream */
   factory = gst_rtsp_media_factory_new ();
   /*gst_rtsp_media_factory_set_launch (factory,
-      "( appsrc name=mysrc ! videoconvert ! x264enc ! rtph264pay name=pay0 pt=96 )");//格式转换没有报错，mpph264enc还没测试
+      "( appsrc name=mysrc ! videoconvert ! mpph264enc ! rtph264pay name=pay0 pt=96 )");//格式转换没有报错，mpph264enc还没测试
 */
   gst_rtsp_media_factory_set_launch (factory,
-      "( appsrc name=mysrc ! videoconvert ! capsfilter caps=video/x-raw,format=NV12 ! queue! mpph264enc ! rtph264pay name=pay0 pt=96 )");
+      "( appsrc name=mysrc caps=video/x-raw,format=(string)RGB,width=(int)640,height=(int)480,framerate=(fraction)15/1 ! videoconvert ! capsfilter caps=video/x-raw,format=(string)NV12 ! queue ! mpph264enc ! rtph264pay name=pay0 pt=96 )");//格式转换没有报错，mpph264enc还没测试
 
+  /*gst_rtsp_media_factory_set_launch (factory,
+      "( appsrc name=mysrc ! videoconvert ! capsfilter caps=video/x-raw,format=(string)NV12,width=(int)640,height=(int)480,framerate=(fraction)15/1 ! mpph264enc ! rtph264pay name=pay0 pt=96 )");//格式转换没有报错，mpph264enc还没测试
+*/
   /* notify when our media is ready, This is called whenever someone asks for
    * the media and a new pipeline with our appsrc is created */
   g_signal_connect (factory, "media-configure", (GCallback) media_configure,
