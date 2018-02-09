@@ -18,20 +18,6 @@ int _image_width=640;
 int _image_height=480;
 #define FPS 	15
 
-/**
-函数：buffer_copy，拷贝数据
-输入：
-buffer: a #GstBuffer.
-input_uint8_ptr:输入的图像数据指针，
-size:要拷贝数据的大小，字节大小
-备注：
-gstreamer Basic-Types https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/glib/glib-Basic-Types.html#guint8
-
-typedef unsigned long gsize;
-//typedef unsigned char guint8;
- */
-
-
 /* called when we need to give data to appsrc 
 给图像数据
 */
