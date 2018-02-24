@@ -36,6 +36,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             print '**found file', file.filename
             filename = secure_filename(file.filename)
+#            print os.path.join(app.config['UPLOAD_FOLDER'],filename)#uploads/20180211091741a.jpg
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # for browser, add 'redirect' function on top of 'url_for'
             return url_for('uploaded_file',
@@ -58,6 +59,8 @@ def uploaded_file(filename):
 def main(args):
     global UPLOAD_FOLDER
     UPLOAD_FOLDER=args.path
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#    print UPLOAD_FOLDER,args.path
     app.run(host=args.ip, port=int(args.port),debug=True)
 
 if __name__ == '__main__':
