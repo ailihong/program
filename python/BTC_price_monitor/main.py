@@ -33,7 +33,7 @@ class monitor(threading.Thread):
         
     def push_mail(self):
         msg_from='makeitbai@qq.com'#发送方邮箱
-        passwd='kwnxqkwebnyvfcig'#填入发送方邮箱的授权码
+        passwd='xxxx'#填入发送方邮箱的授权码
         msg_to='make_it_bai@foxmail.com'#收件人邮箱
         subject="BTC 24h变化率下降通知"#主题     
         content='last 24h change:%s, now 24h change:%s'%(self.last_change_24h,self.cur_change_24h)#正文
