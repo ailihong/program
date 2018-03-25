@@ -13,7 +13,7 @@ from email.mime.text import MIMEText
 class monitor(threading.Thread):
     def __init__(self,time_period=1):#定时周期
         super(monitor, self).__init__()
-        print 'init ...'
+        #print 'init ...'
         self.time_period = time_period
         self.last_change_24h=self.get_price()
         self.cur_change_24h=self.last_change_24h
