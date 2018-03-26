@@ -1,5 +1,6 @@
 //opencv cpp 包含头文件，常见操作
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/opencv.hpp>
 
 cv::imshow( "Frame", frame );
 cv::waitKey(20);//一定要加这个，要不然显示不了
