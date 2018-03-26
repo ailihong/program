@@ -2,6 +2,7 @@
 #include <opencv2/highgui/highgui.hpp>
 
 cv::imshow( "Frame", frame );
+cv::waitKey(20);//一定要加这个，要不然显示不了
 
 //给mat赋值
 cv::Mat frame( mHeight, mWidth, CV_8UC3 );
