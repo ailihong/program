@@ -15,6 +15,7 @@ VideoCapture capture("D:/videos/PetsD2TeC2.avi");
 if(!capture.isOpened())  
   cout<<"fail to open!"<<endl;
 //读取下一帧  
+//cap >> frame; //读取方式二 
 if(!capture.read(frame))  
 {  
    cout<<"读取视频失败"<<endl;  
