@@ -22,3 +22,5 @@ if(!capture.read(frame))
 }  
           
 imshow("frame",frame); 
+
+resize(src,dst,Size(32,32),0,0,CV_INTER_LINEAR);
