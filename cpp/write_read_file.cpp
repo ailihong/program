@@ -1,3 +1,4 @@
+//读写文件
 #include <stdio.h>
 #include <string.h>
 
@@ -22,5 +23,39 @@ int main()
     }
     else
     printf("file is not exists\n");
+    
+}
+
+//写duoble到二进制文件，然后读取
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    double fnum[4] = {9.5, -3.4, 1.0, 2.1};
+    FILE * fp=fopen("./test","wb+");
+    if(fp)
+    {
+	fwrite( (char *)fnum, sizeof( double ), 4, fp );
+        
+    }
+    else printf("file is not exists\n");
+    fclose(fp);
+    
+    fp=fopen("./test","rb+");
+    double fnum2[4] = {0};
+
+    for(int i =0 ;i<4;i++)
+    	printf("%lf ",fnum2[i]);
+    if(fp)
+    {
+        
+	fread( (char *)fnum2, sizeof( double ), 4, fp );
+        
+    }
+    else printf("file is not exists\n");
+    fclose(fp);
+    for(int i =0 ;i<4;i++)
+    	printf("%lf ",fnum2[i]);
     
 }
