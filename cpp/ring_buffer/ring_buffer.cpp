@@ -34,11 +34,11 @@ void push(unsigned char val)
 void push2(unsigned char *val,int len)
 {
     std::unique_lock<std::mutex> lock(mtx_);
-
+    cond_write.wait(lock, write_available);//当读位置与写位置存在一定距离thresh内，则开始读，否则等待写位置
     for(int i=0;i<len;i++)
     {
-        cond_write.wait(lock, write_available);//当读位置与写位置存在一定距离thresh内，则开始读，否则等待写位置
         buffer[write++ & MASK] = val[i];
+        printf("write pos:%d\n",write);
     }
 
     cond_read.notify_one();
@@ -51,7 +51,7 @@ unsigned char pop()
     cond_read.wait(lock, read_available);
 
     unsigned char x = buffer[read++ & MASK];
-
+    printf("read pos:%d\n",read);
     cond_write.notify_one();
 
     return x;
