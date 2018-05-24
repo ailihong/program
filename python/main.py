@@ -9,7 +9,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Tensorflow Faster R-CNN demo')
     parser.add_argument('--net', dest='demo_net',type=str, help='Network to use [vgg16 res101]',
                         default='res101')
-    parser.add_argument('--dataset', dest='dataset', help='Trained dataset [pascal_voc pascal_voc_0712]',
+    parser.add_argument('--dataset','-d',, dest='dataset', help='Trained dataset [pascal_voc pascal_voc_0712]',
                         default='pascal_voc_0712')
     args = parser.parse_args()
 
