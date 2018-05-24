@@ -31,7 +31,7 @@ if __name__ == '__main__':
             f_new = open(args.new+old_name,'w',encoding='utf-8')
 
             # 循环读取旧文件
-            for line in f:
+            for line in f:#读取一行（end with '\n'），
                 # 进行判断
                 if "JPG" in line:
                     line = line.replace("JPG", 'jpg')
