@@ -97,4 +97,4 @@ xml=dicttoxml(d,custom_root='annotation')
 fp = open('000013.xml','w')
 fp.write(xml)
 fp.close()
-#最后的效果是labelImg能识别新生成的000013.xml
+#最后的效果是labelImg能识别新生成的000013.xml,发现一个很严重的问题，当有多个object时，转为dict只可能有一个
