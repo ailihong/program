@@ -8,13 +8,14 @@ import argparse
 
 parser = argparse.ArgumentParser(description='batch rename')
 parser.add_argument('--txt', dest='txt', help='file directory',default='None')
+parser.add_argument('--per', dest='per', type = float,help='file directory',default=0.95)
 args = parser.parse_args()
 
-train_percent = 0.92
+
 if args.txt == 'None':
     print('enter parameters')
     exit(0)  
-
+train_percent = args.per
 root_path = os.path.split(args.txt)[0]
 fp = open(args.txt,'r')
 
@@ -29,9 +30,10 @@ list_=range(num)
 #print 'list ',list_
 tr=int(num*train_percent)
 
-val= random.sample(list_,num - tr)
+list_random = random.sample(list_,num)
+val= list_random[tr+1:]
 #print 'val ',val
-train=random.sample(list_,tr)
+train=list_random[:tr]
 #print 'train ',train
 
 for i in train:  
