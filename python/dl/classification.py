@@ -4,7 +4,7 @@ import sys,os
 caffe_root = '/home/caffe-ssd/'  # this file should be run from {caffe_root}/examples (otherwise change this line)
 sys.path.insert(0, caffe_root + 'python')
 os.environ['GLOG_minloglevel'] = '2' # 将caffe的输出log信息不显示，必须放到import caffe前
-import caffe,cv2
+import caffe
 import numpy as np
 import time
 import argparse
@@ -50,16 +50,22 @@ net = caffe.Net(deploy,  # 定义模型结构
 # 加载ImageNet图像均值 (随着Caffe一起发布的)
 mu = np.load(args.mean)
 mu = mu.mean(1).mean(1)  # 对所有像素值取平均以此获取BGR的均值像素值
-# 图像预处理
+# 图像预处理,训练网络时是先减均值，然后缩放到0-1，以下预处理能得到正确的结果
+#装载的图像为RGB，HWC，【0-1】的图像
+# create transformer for the input called 'data'
 transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape})
+# move image channels to outermost dimension   HWC变为CHW
 transformer.set_transpose('data', (2,0,1))
+# subtract the dataset-mean value in each channel
 transformer.set_mean('data', mu)
+# rescale from [0, 1] to [0, 255]
 transformer.set_raw_scale('data', 255)
+# swap channels from RGB to BGR
 transformer.set_channel_swap('data', (2,1,0))
 #预测
-img = cv2.imread(args.image)
-
-im = cv2.resize(img,(112,112))
+#img = cv2.imread(args.image)
+im=caffe.io.load_image(args.image)
+#im = cv2.resize(img,(112,112))
 # 导入输入图像
 net.blobs['data'].data[...] = transformer.preprocess('data', im)
 
@@ -76,4 +82,5 @@ print('category:',category)
 class_str = labels[int(category)].split(',')
 class_name = class_str[0]
 print('predict:'+class_name)
+time.sleep(2)
 os.system('echo %s > predict.txt'%class_name)
