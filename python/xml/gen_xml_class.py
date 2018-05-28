@@ -85,4 +85,4 @@ my_xml.set_sub_node('sub_sub_root','xmax','327')
 
 my_xml.set_sub_node('sub_sub_root','ymax','331')
 my_xml.out('out.xml')
-#产生的xml能被labelimg解析识别
+#产生的xml能被labelimg解析识别,能产生多个object
