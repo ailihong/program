@@ -9,31 +9,32 @@ try:
 except ImportError:
     import xml.etree.ElementTree as ET
 
-fp = open('out.txt','w')
-a = ET.Element('annotation')
-b1 = ET.SubElement(a, 'filename')
-b1.text = "000009.jpg"
-b2 = ET.SubElement(a, 'size')
-b2_1 = ET.SubElement(b2, 'width')
-b2_1.text = '500'
-b2_2 = ET.SubElement(b2, 'height')
-b2_2.text = '375'
-b2_3 = ET.SubElement(b2, 'depth')
-b2_3.text = '3'
-b3 = ET.SubElement(a, 'object')
-b3_1 = ET.SubElement(b3, 'name')
-b3_1.text = 'horse'
-b3_2 = ET.SubElement(b3, 'bndbox')
-b3_2_1 = ET.SubElement(b3_2, 'xmin')
-b3_2_1.text = '69'
-b3_2_2 = ET.SubElement(b3_2, 'ymin')
-b3_2_2.text = '172'
-b3_2_3 = ET.SubElement(b3_2, 'xmax')
-b3_2_3.text = '270'
-b3_2_4 = ET.SubElement(b3_2, 'ymax')
-b3_2_4.text = '330'
+fp = open('out.xml','w')
+root = ET.Element('annotation')
+b = ET.SubElement(root, 'filename')
+b.text = "000009.jpg"
+b = ET.SubElement(root, 'folder')
+b.text = "VOC2007"
+b = ET.SubElement(root, 'size')
+c = ET.SubElement(b, 'width')
+c.text = '500'
+c = ET.SubElement(b, 'height')
+c.text = '375'
+c = ET.SubElement(b, 'depth')
+c.text = '3'
+b = ET.SubElement(root, 'object')
+c = ET.SubElement(b, 'name')
+c.text = 'horse'
+c = ET.SubElement(b, 'bndbox')
+d = ET.SubElement(c, 'xmin')
+d.text = '69'
+d = ET.SubElement(c, 'ymin')
+d.text = '172'
+d = ET.SubElement(c, 'xmax')
+d.text = '270'
+d = ET.SubElement(c, 'ymax')
+d.text = '330'
 
-tree = ET.ElementTree(a)
+tree = ET.ElementTree(root)
 tree.write(fp)
 fp.close()
-#产生的xml可以被imglabel正确解析
