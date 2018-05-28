@@ -71,4 +71,18 @@ my_xml.set_sub_node('sub_sub_root','xmax','270')
 
 my_xml.set_sub_node('sub_sub_root','ymax','330')
 
+my_xml.set_sub_root('root','object')
+
+my_xml.set_sub_node('sub_root','name','person')
+
+my_xml.set_sub_root('sub_root','bndbox')
+
+my_xml.set_sub_node('sub_sub_root','xmin','285')
+
+my_xml.set_sub_node('sub_sub_root','ymin','201')
+
+my_xml.set_sub_node('sub_sub_root','xmax','327')
+
+my_xml.set_sub_node('sub_sub_root','ymax','331')
 my_xml.out('out.xml')
+#产生的xml能被labelimg解析识别
