@@ -69,10 +69,10 @@ def main(args):
     if len(list_xml)==0:
         return
     
-    Max_xml_num = 5#9583
+    Max_xml_num = 9583
     xml_num = 0
     for xml_name in list_xml:
-        print(xml_name)
+#        print(xml_name)
         my_xml = gen_xml('annotation')
         tree = ET.ElementTree(file=os.path.join(args.xml_path,xml_name))
         have_person = False
@@ -92,12 +92,12 @@ def main(args):
                     my_xml.set_sub_root('root','object')
                     my_xml.set_sub_node('sub_root','name','person')
                     my_xml.set_sub_root('sub_root','bndbox')
-                    print('''set_sub_root('sub_root','bndbox')''')
+#                    print('''set_sub_root('sub_root','bndbox')''')
                     save_person = True
                     have_person = True
                 if elem.tag == 'part':
                     skip_part = True
-                    print('en_part,skip:',skip_part)
+#                    print('en_part,skip:',skip_part)
                     
             elif elem.tag in list_sub_need:
                 if save_size and elem.tag in list_sub_need[:3]:
@@ -110,22 +110,22 @@ def main(args):
                         
                 elif elem.tag in list_sub_need[3:]:
                     save_person_n += 1
-                    print('set_sub_node:%s,%s'%(elem.tag,elem.text))
+#                    print('set_sub_node:%s,%s'%(elem.tag,elem.text))
                     
-                    print('save_person_n:',save_person_n)
+#                    print('save_person_n:',save_person_n)
                     if skip_part:
-                        print('skip:',skip_part)
+#                        print('skip:',skip_part)
                         if save_person_n == 4:
                             skip_part = False
                             save_person_n = 0
-                            print('de_part,skip:',skip_part)
+#                            print('de_part,skip:',skip_part)
                             
                     elif save_person:
                         my_xml.set_sub_node('sub_sub_root','%s'%elem.tag,'%s'%elem.text)
                         if save_person_n == 4:
                             save_person = False
                             save_person_n = 0
-                            print('saved person')
+#                            print('saved person')
                             
         if have_person:
             
