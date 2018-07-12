@@ -81,3 +81,4 @@ int main()
 }
 
 fgets(buff, sizeof(buff) - 1, fp); // 包含了\n,读取一行
+sscanf(buff,"%f %f %f %f %f %f\n",&temp[0],&temp[1],&temp[2],&temp[3],&temp[4],&temp[5]);
