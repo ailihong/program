@@ -79,3 +79,5 @@ int main()
     	printf("%lf ",fnum2[i]);
     
 }
+
+fgets(buff, sizeof(buff) - 1, fp); // 包含了\n,读取一行
