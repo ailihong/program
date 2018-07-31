@@ -1,0 +1,2 @@
+use:
+sqlite3 face.db < create_db.sql
