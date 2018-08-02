@@ -73,6 +73,7 @@ int main(int argc,char **argv){
         exit(-1);
     }
     char * filePath = argv[1];
+    if(filePath[strlen(filePath)-1]=='/')filePath[strlen(filePath)-1]=0;
     vector<string> files;
     char * distAll = "allFiles.txt";
     getAllFiles(filePath, files);
