@@ -90,7 +90,7 @@ def main(args):
                     my_xml.set_sub_root('root','size')
                 if elem.tag == 'name' and elem.text in ['bird','cat','dog']:#['person','cat','dog'] for extract three class
                     my_xml.set_sub_root('root','object')
-                    my_xml.set_sub_node('sub_root','name',elem.tag)
+                    my_xml.set_sub_node('sub_root','name',elem.text)
                     my_xml.set_sub_root('sub_root','bndbox')
 #                    print('''set_sub_root('sub_root','bndbox')''')
                     save_person = True
