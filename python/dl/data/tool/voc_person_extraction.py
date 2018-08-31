@@ -40,7 +40,7 @@ class gen_xml():
         elif last == 'sub_root':
             self.sub_sub_root_a = ET.SubElement(self.sub_root_a, sub_root)
     def out(self,filename):
-        fp = open(filename,'w')
+        fp = open(filename,'wb')
         tree = ET.ElementTree(self.root_a)
         tree.write(fp)
         fp.close()
@@ -69,7 +69,7 @@ def main(args):
     if len(list_xml)==0:
         return
     
-    Max_xml_num = 9583
+    #Max_xml_num = 9583
     xml_num = 0
     for xml_name in list_xml:
 #        print(xml_name)
@@ -88,9 +88,9 @@ def main(args):
                 if elem.tag == 'size':
                     save_size = True
                     my_xml.set_sub_root('root','size')
-                if elem.tag == 'name' and elem.text in ['person',]:#['person','cat','dog'] for extract three class
+                if elem.tag == 'name' and elem.text in ['bird','cat','dog']:#['person','cat','dog'] for extract three class
                     my_xml.set_sub_root('root','object')
-                    my_xml.set_sub_node('sub_root','name','person')
+                    my_xml.set_sub_node('sub_root','name',elem.tag)
                     my_xml.set_sub_root('sub_root','bndbox')
 #                    print('''set_sub_root('sub_root','bndbox')''')
                     save_person = True
@@ -135,8 +135,8 @@ def main(args):
                 xml_num += 1
                 my_xml.out(os.path.join(args.xml_path2,xml_name))
                 os.system('cp %s %s'%(image_filename,image_filename2))
-                if xml_num == Max_xml_num:
-                    break
+                #if xml_num == Max_xml_num:
+                #    break
     
 
 if __name__ == '__main__':
