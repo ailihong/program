@@ -26,6 +26,8 @@ int main(int argc, char** argv)
 {   
 
     VideoCapture cap(0);
+    printf("width = %.2f\n",cap.get(CV_CAP_PROP_FRAME_WIDTH));
+    printf("height = %.2f\n",cap.get(CV_CAP_PROP_FRAME_HEIGHT));
     int cnt = 0;
     string name;
     char option;
