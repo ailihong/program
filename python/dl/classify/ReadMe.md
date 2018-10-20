@@ -1,4 +1,5 @@
-#分类参考
+分类参考
+
 step1:将图片数据分多个文件夹放好
 step2:运行list_all.py
 step3:split_trainval_txt.py切分
