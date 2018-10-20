@@ -20,8 +20,9 @@ total_xml = os.listdir(xmlfilepath)
 allNum = len(total_xml)
 test = int(allNum*test_percent)
 
-trainIndex = range(allNum)
-testIndex = random.sample(trainIndex, test)
+random_index = random.sample(range(allNum), allNum)
+trainIndex = random_index[:allNum-test]
+testIndex = random_index[allNum-test:]
 
 ftest = open(os.path.join(txtsavepath , 'val.txt'), 'w')  
 ftrain = open(os.path.join(txtsavepath , 'train.txt'), 'w')  
