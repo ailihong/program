@@ -11,10 +11,13 @@ def parse_args():
                         default='res101')
     parser.add_argument('--dataset','-d',required = True, dest='dataset', help='Trained dataset [pascal_voc pascal_voc_0712]',
                         default='pascal_voc_0712')#required = True 表示必须的参数
-    args = parser.parse_args()
+    #args = parser.parse_args()
+    args, unparsed = parser.parse_known_args()
 
     return args
 
 if __name__ == '__main__':
     args = parse_args()
+    args.demo_net
+    args.dataset
     
