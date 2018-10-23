@@ -29,10 +29,10 @@ ftrain = open(os.path.join(txtsavepath , 'train.txt'), 'w')
 
 for i  in trainIndex:  
     name=total_xml[i][:-4]+'\n'
-    if i in testIndex:
-        ftest.write(name)
-    else:
-        ftrain.write(name)
+    ftrain.write(name)
+for i  in testIndex:  
+    name=total_xml[i][:-4]+'\n'
+    ftest.write(name)
         
 ftest.close()
 ftrain.close()
