@@ -21,3 +21,26 @@ if __name__ == '__main__':
     args.demo_net
     args.dataset
     
+##----sample2--------------
+FLAGS = None
+if __name__ == '__main__':
+  parser = argparse.ArgumentParser()
+  parser.add_argument(
+      '-s','--stage',
+      type=str,
+      default='train',
+      help='The stage of prototxt, train|test|deploy.'
+  )
+  parser.add_argument(
+      '-n','--nobn',
+      action='store_true',
+      help='for deploy, generate a deploy.prototxt without batchnorm and scale.'
+  )
+  parser.add_argument(
+      '-lmdb','-l',
+      type=str,
+      default='train_lmdb',
+      help='lmdb path'
+  )
+  FLAGS, unparsed = parser.parse_known_args()
+  FLAGS.stage
