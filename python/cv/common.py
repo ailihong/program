@@ -23,3 +23,5 @@ def rotate(image, angle, center=None, scale=1.0):
  
     # 返回旋转后的图像
     return rotated
+
+cv2.cvtColor(image,cv2.COLOR_BGR2HSV)
