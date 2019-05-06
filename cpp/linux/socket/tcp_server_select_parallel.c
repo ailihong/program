@@ -9,7 +9,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
-
+//tutorial link :https://www.cnblogs.com/faraway/archive/2009/03/06/1404449.html
 //----------------------TCP server code start---------------------------------------
 int gServerSocketFd;
 fd_set gFdReads;
