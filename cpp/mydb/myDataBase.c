@@ -85,7 +85,12 @@ int openBinFile(char *fname, int *pFd) {
     
 	return ret;
 }
-
+int openBinFile_global(char *fname){
+    int ret = 0;
+    ret = openBinFile(fname,&gBinFd);
+    strncpy(gDbFileName, fname, FILENAME_LENGTH);//must do once before deleteRecord
+    return ret;
+}
 int addBinFile(record record_a) {
 	int ret = 0,rval;
     int numRecode=0,offSetRecords=0;
