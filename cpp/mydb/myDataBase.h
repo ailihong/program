@@ -13,11 +13,9 @@ typedef struct record_t {
 #define BTYES_NUM_RECOEDS (sizeof(int))
 #define BTYES_A_RECOEDS (sizeof(record))
 
-extern int gBinFd;
-extern char gDbFileName[FILENAME_LENGTH];
-
 long get_file_size(const char *path);
-int openBinFile(char *fname, int *pFd);
+// int openBinFile(char *fname, int *pFd);
+int openBinFile_global(char *fname);
 int addBinFile(record record_a);
 int findBinFile(record * precord);
 int deleteRecordByName(char *searchname);
