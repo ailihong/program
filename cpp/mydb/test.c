@@ -7,9 +7,8 @@ int main(int argc,char ** argv){
     char mydb[FILENAME_LENGTH]="test.db";
     int find=0;
     //open
-    openBinFile(mydb, &gBinFd);
-    strncpy(gDbFileName,mydb,sizeof(mydb)-1);//must do once before deleteRecord
-    printf("fd:%d\n",gBinFd);
+    openBinFile_global(mydb);
+    
     record record_a={.name="aaa",
                     .feature={1.0,2.0,0.0}};
 
