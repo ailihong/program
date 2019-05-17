@@ -11,6 +11,10 @@
 
 int gBinFd;
 char gDbFileName[FILENAME_LENGTH];
+#define MAX_NUM_RECORD 50
+query_simi ret_query_[MAX_NUM_RECORD];
+ref_query_simi ret_query;
+
 int writeNumRecords(int *pFd, int num){
     int ret = 0,rval;
     do{ 
@@ -239,4 +243,100 @@ int updateRecord(record  record_){
     }while(0);
 	
 	return ret;
+}
+void closeBinFile(){
+    close(gBinFd);
+}
+int query_db(simility ptr_fun, float * feature_query, float thresh, ref_query_simi * pRef_query_result){
+    int ret = 0;
+    record record_a;
+    int numRecode=0,i,rval,cnt=0;
+    float simi;
+	do{
+        readNumRecords(&gBinFd, &numRecode);
+        lseek(gBinFd,BTYES_NUM_RECOEDS,SEEK_SET);//start+
+        for(i=0;i<numRecode;i++){
+            rval = read(gBinFd,&record_a,BTYES_A_RECOEDS);
+            if(rval != BTYES_A_RECOEDS){
+                printf("read file error\n");
+                ret = -1;
+                break;
+            }
+            simi = (*ptr_fun)(feature_query,record_a.feature,128);
+            //printf("name:%s,simi:%f\n",record_a.name,simi);
+            if(simi >= thresh){//find it
+                if(MAX_NUM_RECORD>cnt){
+                    strncpy(ret_query_[cnt].name, record_a.name, sizeof(ret_query_[cnt].name)-1);
+                    ret_query_[cnt].simility = simi;
+                    cnt++;
+                }
+            }
+        }
+        ret_query.pQuery_simi = ret_query_;
+        ret_query.ret_query_num = cnt;
+        pRef_query_result = &ret_query; 
+    }while(0);
+	
+	return ret;
+}
+int Top_one(ref_query_simi *pRef_query_simi_){
+    float max = -100;
+    int i=0,index=0,len=pRef_query_simi_->ret_query_num;
+
+    for(i =0;i<len;i++)
+    {
+        if(pRef_query_simi_->pQuery_simi[i].simility>=max)
+        {
+            max = pRef_query_simi_->pQuery_simi[i].simility;
+            index=i;
+        }
+    }
+
+    return index;
+}
+void swap_f(float *xp, float *yp) 
+{ 
+    float temp = *xp; 
+    *xp = *yp; 
+    *yp = temp; 
+}
+void swap_i(int *xp, int *yp) 
+{ 
+    int temp = *xp; 
+    *xp = *yp; 
+    *yp = temp; 
+}
+void func_top_k(float * fea, int fea_len, int * idx_top, int top_k){
+    int n=fea_len;
+    int i, j, max_idx; 
+    float * arr = (float *)malloc(sizeof(float)*fea_len);
+    memcpy(arr,fea,sizeof(float)*fea_len);
+    int * idx = (int *)malloc(sizeof(int)*fea_len);
+    for(i = 0; i < n; i++)idx[i]=i;
+    // One by one move boundary of unsorted subarray 
+    for (i = 0; i < n-1; i++) 
+    { 
+        // Find the minimum element in unsorted array 
+        max_idx = i; 
+        for (j = i+1; j < n; j++) 
+          if (arr[j] > arr[max_idx]) 
+            max_idx = j; 
+  
+        // Swap the found minimum element with the first element 
+        swap_f(&arr[max_idx], &arr[i]);
+        swap_i(&idx[max_idx], &idx[i]); 
+    }
+    memcpy(idx_top,idx,sizeof(int)*top_k);
+    free(arr);
+    free(idx);
+}
+void Top_k(ref_query_simi *pRef_query_simi_,int * idx_top, int top_k){
+    
+    int len=pRef_query_simi_->ret_query_num;
+    float * fea= (float *)malloc(sizeof(float)*len);
+    for(int i =0;i<len;i++)fea[i]=pRef_query_simi_->pQuery_simi[i].simility;
+    
+    func_top_k(fea, len, idx_top, top_k);
+
+    free(fea);
 }
