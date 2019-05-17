@@ -34,7 +34,7 @@ int addBinFile(record record_a);
 int findBinFile(record * precord);
 int deleteRecordByName(char *searchname);
 int updateRecord(record  record_);
-int closeBinFile();
+void closeBinFile();
 
 int query_db(simility ptr_fun, float * feature_query, float thresh, ref_query_simi * pRef_query_result);
 int Top_one(ref_query_simi *pRef_query_simi_);
