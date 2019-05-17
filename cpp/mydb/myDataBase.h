@@ -1,6 +1,8 @@
 #ifndef _MYDATABASE_H
 #define _MYDATABASE_H
 
+//version 0.1
+
 #define	FILENAME_LENGTH	(256)
 #define	NAME_LENGTH	FILENAME_LENGTH
 #define	FEATURE_LENGTH	(128)
