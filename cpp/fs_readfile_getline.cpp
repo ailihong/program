@@ -1,5 +1,6 @@
 #include <fstream>  // NOLINT(readability/streams)
 #include <string>
+#include <vector>
 #include <iostream>
 using namespace std;
 
@@ -14,5 +15,7 @@ int main(int argc, char** argv){
     {
         words.push_back(line1);  
     }
-    
+    for(int i=0;i<words.size();i++)
+    cout << words[i]<< endl;
+    return 0;
 }
