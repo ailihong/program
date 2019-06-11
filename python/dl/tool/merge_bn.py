@@ -1,6 +1,6 @@
 import numpy as np  
 import sys
-caffe_root = '../../'
+caffe_root = '/home/caffe-ssd/'
 sys.path.insert(0, caffe_root + 'python')  
 import caffe  
 import argparse
@@ -27,17 +27,19 @@ def merge_bn(net, nob):
     w = w * rstd * scale
     b = (b - mean) * rstd * scale + shift
     '''
-    for key in net.params.keys():
-        if type(net.params[key]) is caffe._caffe.BlobVec:
-            #print('key:',key)
+    for key in nob.params.keys():
+        if type(nob.params[key]) is caffe._caffe.BlobVec:
+            print('key:',key)
             if key.endswith("/bn") or key.endswith("/scale"):
                 continue
             else:
                 conv = net.params[key]
                 if key+'/bn' not in net.params:
+                    print('no bn key:',key)
                     for i, w in enumerate(conv):
                         nob.params[key][i].data[...] = w.data
                 else:
+                    print('bn key:',key)
                     bn = net.params[key + "/bn"]
                     scale = net.params[key + "/scale"]
                     wt = conv[0].data
@@ -63,8 +65,8 @@ def merge_bn(net, nob):
                     bias = (bias - mean) * rstd * scales + shift
                     
                     nob.params[key][0].data[...] = wt
-                    if len(nob.params[key])==2:#bias_term is not false
-                        nob.params[key][1].data[...] = bias
+                    #if len(nob.params[key])==2:#bias_term is not false
+                    nob.params[key][1].data[...] = bias
   
 args = parse_args()
 if args.train_proto == 'None' or args.train_model == 'None' \
