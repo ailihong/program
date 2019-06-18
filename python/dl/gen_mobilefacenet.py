@@ -409,7 +409,7 @@ layer {
         self.conv_block(name='conv_6dw7_7',num=512,kernel=7,stride=1,pad=0,group=512,prelu_have=False)#1
         
         self.fc(name='pre_fc1', output=128)
-        self.bn(name='pre_fc1')#top=bottom=name
+        self.bn(name='fc1')#top=bottom=name
         self.fc(name='fc2', output=2)
         self.classifier_loss(self.stage)
 
