@@ -48,6 +48,9 @@ public:
             printf("i:%d,val:%f\n", i,buf_[(tail_+i)%max_size_]);
         }
     }
+    int get_idx_mapping(int idx){
+		return (tail_ + idx)%max_size_;
+	}
 	void reset()
 	{
 		head_ = tail_;
