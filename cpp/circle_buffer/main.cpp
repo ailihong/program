@@ -2,7 +2,7 @@
 #include <memory>
 #include <mutex>
 
-typedef float T;
+template <class T>
 class circular_buffer {
     public:
 	
@@ -95,7 +95,7 @@ public:
 
 int main(void)
 {
-	circular_buffer circle(5);
+	circular_buffer<float> circle(5);
     int x;
 	printf("Adding %d values\n", circle.capacity() );
 	for(uint32_t i = 0; i < circle.capacity(); i++)
