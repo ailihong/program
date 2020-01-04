@@ -2,6 +2,8 @@
 
 ##step1，安装adb工具，搜索安装
 
+打开usb调试，adb devices,查看设备
+
 ##step2,用 ADB 工具获取当前手机截图，并用 ADB 将截图 pull 上来
 
 adb shell screencap -p /sdcard/autojump.png
