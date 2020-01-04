@@ -1,4 +1,4 @@
-#自动点击安卓手机屏幕某个区域
+#自动点击安卓手机屏幕某个区域,参考https://github.com/wangshub/wechat_jump_game
 
 ##step1，安装adb工具，搜索安装
 
