@@ -5,6 +5,7 @@
 ##step2,用 ADB 工具获取当前手机截图，并用 ADB 将截图 pull 上来
 
 adb shell screencap -p /sdcard/autojump.png
+
 adb pull /sdcard/autojump.png .
 
 ##step3,安装mtpaint，方便查看像素坐标
