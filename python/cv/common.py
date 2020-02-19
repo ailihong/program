@@ -1,4 +1,6 @@
-img = cv2.imread(fn)#when failed,got None
+img = cv2.imread(fn)
+if img.size ==0:
+    print("image is error!!!")
 sp = img.shape
 sz1 = sp[0]#height(rows) of image
 sz2 = sp[1]#width(colums) of image
