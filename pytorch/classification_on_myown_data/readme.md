@@ -3,4 +3,4 @@
 
 ##tensorboard 可视化可以参考 https://github.com/longpeng2008/yousan.ai/blob/master/computer_vision/projects/classification/pytorch/simpleconv3/train.py
 
-##
+##所有ipynb都是在google colab中训练
