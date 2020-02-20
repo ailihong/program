@@ -3,7 +3,26 @@
 Created on Tue Feb 18 15:53:41 2020
 
 @author: baijun
-鏍规嵁鍥剧墖鐩綍鎸夋瘮渚嬮殢鏈烘媶鍒嗘垚trainval
+根据图片文件夹按比例分成train val两部分
+输入图片目录结构:
+glasses_class_data/
+├── 1
+│   └── test1.jpg
+└── 2
+    └── test1.jpg
+输出图片目录结构:
+glasses_class_data/
+├── train
+│   ├── 1
+│   │   └── test1.jpg
+│   └── 2
+│       └── test1.jpg
+└── val
+    ├── 1
+    │   └── test1.jpg
+    └── 2
+        └── test1.jpg
+
 """
 import argparse
 import os
