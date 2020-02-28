@@ -3,7 +3,7 @@
 Created on Tue Feb 18 15:53:41 2020
 
 @author: baijun
-根据图片文件夹按比例分成train val两部分
+根据图片文件夹按比例分成train val两部分,文件名可以任意命名，不用1,2数字也可以
 输入图片目录结构:
 glasses_class_data/
 ├── 1
