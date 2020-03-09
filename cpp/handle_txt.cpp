@@ -24,8 +24,9 @@ ifstream fid_video_list;//input
 fid_video_list.open(video_list);
 string line;
 if(fid_video_list.is_open()){
-	while (!fid_video_list.eof()) {
-		fid_video_list >> line;//without \n
+	while (1) {
+		fid_video_list >> line;//split by ' ' or '\n'
+		if( fid_video_list.eof() ) break;
 		cout << "reading...... " << line << endl;
         ...
 fid_image_list.close();
