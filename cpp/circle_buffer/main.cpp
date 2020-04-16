@@ -6,7 +6,7 @@ template <class T>
 class circular_buffer {
     public:
 	
-	float *buf_;
+	T *buf_;
 	size_t head_ = 0;
 	size_t tail_ = 0;
 	size_t max_size_;
