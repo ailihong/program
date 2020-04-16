@@ -116,3 +116,28 @@ int main(void)
 
 	return 0;
 }
+int main()
+{
+    circular_buffer<float> circle(5);
+    circular_buffer<float> circle2(5);
+    
+	printf("%d\n", circle.capacity());
+	for(uint32_t i = 0; i < circle.capacity(); i++)
+	{
+		circle.put(i);
+	}
+    circle.print();
+    
+    for(uint32_t i = 0; i < circle2.capacity(); i++)
+	{
+		circle2.put(i+3);
+	}
+    circle2.print();
+    
+    for(uint32_t i = 0; i < circle.capacity(); i++)
+	{
+		circle.put(i%2);
+	}
+    circle.print();
+    return 0;
+}
