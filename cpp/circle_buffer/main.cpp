@@ -141,3 +141,4 @@ int main()
     circle.print();
     return 0;
 }
+//感觉用到vector中，不太稳定，得到的跟存进去的不一样
