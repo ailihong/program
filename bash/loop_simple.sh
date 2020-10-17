@@ -6,3 +6,8 @@ do
     echo ${i%.txt} #exclude the txt,example:temp/1
     echo debug/`basename ${i}` #out:debug/1.txt
 done
+
+for i in aa bb cc
+do
+    echo ${i}#print aa,bb,cc
+done
