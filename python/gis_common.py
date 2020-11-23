@@ -17,3 +17,18 @@ print(polygon_shape.intersection(gridcell_shape))
 print(polygon_shape.intersection(gridcell_shape).area)
 #POLYGON ((0 0, 0 50, 50 50, 50 0, 0 0))
 #2500.0
+
+box_points1 = [[0, 0], [0, 50], [50, 50], [50, 0]]
+polygon1 = Polygon(box_points1)
+
+#box_points2 = [[0, 0], [0, 100], [100, 100], [100, 0]]
+#polygon2 = Polygon(box_points2)
+
+box_points2 = [[10, 0], [40, 0], [25, 100]]
+polygon2 = Polygon(box_points2)
+
+intersection_polygon = polygon1.intersection(polygon2)
+print(intersection_polygon)
+
+#POLYGON ((0 0, 0 50, 50 50, 50 0, 0 0))
+#POLYGON ((17.5 50, 32.5 50, 40 0, 10 0, 17.5 50))
