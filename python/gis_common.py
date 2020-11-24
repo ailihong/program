@@ -32,3 +32,21 @@ print(intersection_polygon)
 
 #POLYGON ((0 0, 0 50, 50 50, 50 0, 0 0))
 #POLYGON ((17.5 50, 32.5 50, 40 0, 10 0, 17.5 50))
+
+#example 3,线与多边形交点
+from shapely.geometry.polygon import Polygon
+from shapely.geometry import LineString
+
+height = 512
+width = 256
+rect_pts = [[0,0],[0,height],[width,height],[width,0]]
+rect_poly = Polygon(rect_pts)
+
+k = -1
+c = 35
+
+line = LineString([(0,c), (width,width*k+c)])
+print(line)
+
+intersection = rect_poly.intersection(line)
+print(intersection)
