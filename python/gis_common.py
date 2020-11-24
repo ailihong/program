@@ -60,3 +60,14 @@ rect_poly = Polygon(rect_pts)
 #print(rect_poly.area)#0，#无序点导致多边形是个十字叉，面积为0
 #print(dir(rect_poly))
 print(rect_poly.convex_hull.area)#求多边形的最小外接矩形对应的多边形的面积
+
+#example 5 线切开多边形
+from shapely.geometry import LineString, Polygon
+
+polygon = Polygon([[0, 512], [0, 0], [256, 0], [256, 512]])
+line1 = LineString([(0, 0), (256, 512)])
+
+line1_pol = line1.buffer(1e-3)#感觉类似于将线膨胀了一点点，变成多边形
+
+new_polygon = polygon.difference(line1_pol)#多边形求差集
+print(polygon,line1,line1_pol,new_polygon)
