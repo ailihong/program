@@ -50,3 +50,13 @@ print(line)
 
 intersection = rect_poly.intersection(line)
 print(intersection)
+
+#example 4
+height = 512
+width = 256
+
+rect_pts = [[0.0, 478.9081818186243], [256.0, 500.5941322324535], [0, 512], [256, 512]]#点是无序的
+rect_poly = Polygon(rect_pts)
+#print(rect_poly.area)#0，#无序点导致多边形是个十字叉，面积为0
+#print(dir(rect_poly))
+print(rect_poly.convex_hull.area)#求多边形的最小外接矩形对应的多边形的面积
