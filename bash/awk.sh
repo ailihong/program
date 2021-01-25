@@ -22,5 +22,5 @@ Mark 100
 Mary 121
 Susie 76.5
 
-#制定分隔符
--F ':'
+#指定分隔符,格式化输出
+awk  -F ':'  '{printf("filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,$0)}'
