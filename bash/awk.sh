@@ -24,3 +24,7 @@ Susie 76.5
 
 #指定分隔符,格式化输出
 awk  -F ':'  '{printf("filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,$0)}'
+
+#获取文件行数
+num=`wc -l csv2feature_id_list.sh|awk  -F ' ' '{print $1}'`
+echo $num
