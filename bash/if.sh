@@ -108,3 +108,19 @@ case $Num in
     echo "default"
 ;;
 esac
+
+#自己写的,至少输入2个参数，批量调用脚本
+echo "total input params "$#
+echo $@
+if [[ "$#" -lt "2" ]];then
+echo "input format:ls_dir,save_dir"
+exit 0
+fi
+ls_dir=$1
+save_dir=$2
+mkdir $save_dir
+for name in `ls $ls_dir`
+do
+echo $name
+python3 pick_file_depend_on_timeInterval.py -i $ls_dir/$name -in 50 -f3 $save_dir/$name
+done
